@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Submit</title>
+    <script src="jquery-3.4.1.min.js" type="text/javascript"></script>
+</head>
+<body>
+<form>
+    名称：<input id="name" type="text"/><br/>
+    血量：<input id="hp" type="text"/><br/>
+    <input id="sender" type="button" value="提交">
+</form>
+<div id="messageDiv"></div>
+
+<script>
+    $('#sender').click(function () {
+        var name = document.getElementById('name').value;
+        var hp = document.getElementById('hp').value;
+        var hero = {"name": name, "hp": hp};
+        var url = "submitServlet";
+
+        $.post(
+            url,
+            {"data": JSON.stringify(hero)},
+            function (data) {
+                alert("提交成功，请在Tomcat控制台查看服务端接收到的数据");
+            });
+
+    });
+</script>
+</body>
+</html>
